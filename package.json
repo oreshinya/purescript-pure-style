@@ -3,8 +3,9 @@
   "name": "purescript-pure-style",
   "scripts": {
     "clean": "rm -rf output",
-    "compile": "psc src/PureStyle.purs 'bower_components/purescript-*/src/**/*.purs'",
-    "psci": "psci src/PureStyle.purs 'bower_components/purescript-*/src/**/*.purs'"
+    "compile": "psc src/PureStyle.purs test/Main.purs 'bower_components/purescript-*/src/**/*.purs'",
+    "psci": "psci src/PureStyle.purs 'bower_components/purescript-*/src/**/*.purs'",
+    "test": "node -e \"require('./output/Test.Main').main()\""
   },
   "devDependencies": {
     "purescript": "0.10.7"
