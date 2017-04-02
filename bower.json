@@ -1,5 +1,23 @@
 {
   "name": "purescript-pure-style",
+  "version": "0.1.0",
+  "license": "MIT",
+  "homepage": "https://github.com/oreshinya/purescript-pure-style",
+  "authors": [
+    "Shinya Takahashi <s.takahashi313@gmail.com>"
+  ],
+  "description": "PureScript CSS builder",
+  "keywords": [
+    "purescript",
+    "css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/oreshinya/purescript-pure-style.git"
+  },
+  "moduleType": [
+    "node"
+  ],
   "ignore": [
     "**/.*",
     "node_modules",
