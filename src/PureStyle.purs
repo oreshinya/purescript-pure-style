@@ -35,11 +35,11 @@ data Style
 
 data KeyFrame = KeyFrame Int (Array Style)
 
-infix 6 Prop as :
+infixr 1 Prop as :
 
-infix 6 Node as :-
+infixr 1 Node as :-
 
-infix 6 KeyFrame as :>
+infixr 1 KeyFrame as :>
 
 
 
