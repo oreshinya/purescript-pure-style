@@ -4,6 +4,9 @@
 
 Write CSS with PureScript.
 
+see [example](https://github.com/oreshinya/purescript-cherry/blob/master/example/Main.purs).
+see [test](https://github.com/oreshinya/purescript-pure-style/blob/master/test/Main.purs).
+
 ## Installation
 
 ```
