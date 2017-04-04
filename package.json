@@ -6,7 +6,9 @@
     "bower": "bower install",
     "compile": "pulp build",
     "psci": "pulp psci",
-    "test": "pulp test"
+    "test": "pulp test",
+    "pulp:version": "pulp version",
+    "pulp:publish": "pulp publish"
   },
   "devDependencies": {
     "bower": "^1.8.0",
