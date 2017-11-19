@@ -2,10 +2,9 @@
 
 [![Latest release](http://img.shields.io/github/release/oreshinya/purescript-pure-style.svg)](https://github.com/oreshinya/purescript-pure-style/releases)
 
-Write CSS with PureScript.
+Write CSS directly with auto name generation in PureScript.
 
-see [example](https://github.com/oreshinya/purescript-cherry/blob/master/example/Main.purs).
-see [test](https://github.com/oreshinya/purescript-pure-style/blob/master/test/Main.purs).
+See [test](https://github.com/oreshinya/purescript-pure-style/blob/master/test/Main.purs).
 
 ## Installation
 
