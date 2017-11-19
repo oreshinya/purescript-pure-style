@@ -11,9 +11,9 @@ import Test.Assert (assert, ASSERT)
 
 main :: forall e. Eff (assert :: ASSERT, console :: CONSOLE | e) Unit
 main = do
-  assert $ sampleClass == "z66dqm"
-  assert $ sampleKeyframes == "25sc03"
-  assert $ sampleClassNameWithMedia == "2aok7f"
+  assert $ sampleClass == "pz66dqm"
+  assert $ sampleKeyframes == "p25sc03"
+  assert $ sampleClassNameWithMedia == "p2aok7f"
   log $ getStyle sheet
 
 

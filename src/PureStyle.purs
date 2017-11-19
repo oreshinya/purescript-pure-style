@@ -36,7 +36,7 @@ registerStyle (StyleSheet ref) style = unsafePerformEff do
   modifyRef ref $ flip append output
   pure name
   where
-    name = generateHash style
+    name = "p" <> generateHash style
     output = replaceToken name style
 
 
