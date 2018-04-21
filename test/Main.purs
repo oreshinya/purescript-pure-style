@@ -4,27 +4,25 @@ import Prelude
 
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log)
-import PureStyle (StyleSheet, createStyleSheet, getStyle, registerStyle)
+import PureStyle (Style, style, name, output)
 import Test.Assert (assert, ASSERT)
 
 
 
 main :: forall e. Eff (assert :: ASSERT, console :: CONSOLE | e) Unit
 main = do
-  assert $ sampleClass == "pz66dqm"
-  assert $ sampleKeyframes == "p25sc03"
-  assert $ sampleClassNameWithMedia == "p2aok7f"
-  log $ getStyle sheet
+  assert $ name sampleStyle == "pz66dqm"
+  assert $ name sampleKeyframes == "p25sc03"
+  assert $ name sampleStyleWithMedia == "p2aok7f"
+  log $ output sampleStyle
+  log $ output sampleKeyframes
+  log $ output sampleBaseStyle
+  log $ output sampleStyleWithMedia
 
 
 
-sheet :: StyleSheet
-sheet = createStyleSheet
-
-
-
-sampleClass :: String
-sampleClass = registerStyle sheet
+sampleStyle :: Style
+sampleStyle = style
   """
   .& {
     width: 100px;
@@ -41,8 +39,8 @@ sampleClass = registerStyle sheet
 
 
 
-sampleKeyframes :: String
-sampleKeyframes = registerStyle sheet
+sampleKeyframes :: Style
+sampleKeyframes = style
   """
   @keyframes & {
     0% {
@@ -59,8 +57,8 @@ sampleKeyframes = registerStyle sheet
 
 
 
-sampleCSS :: Unit
-sampleCSS = const unit $ registerStyle sheet
+sampleBaseStyle :: Style
+sampleBaseStyle = style
   """
   html, body {
     height: 100%;
@@ -69,8 +67,8 @@ sampleCSS = const unit $ registerStyle sheet
 
 
 
-sampleClassNameWithMedia :: String
-sampleClassNameWithMedia = registerStyle sheet
+sampleStyleWithMedia :: Style
+sampleStyleWithMedia = style
   """
   @media (max-width: 700px) {
     .& {
