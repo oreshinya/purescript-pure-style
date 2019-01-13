@@ -2,27 +2,23 @@ module Test.Main where
 
 import Prelude
 
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log)
-import PureStyle (Style, style, name, output)
-import Test.Assert (assert, ASSERT)
+import PureStyle (StyleSheet, createStyleSheet, getStyle, registerStyle)
+import Effect (Effect)
+import Effect.Console (log)
+import Test.Assert (assert)
 
-
-
-main :: forall e. Eff (assert :: ASSERT, console :: CONSOLE | e) Unit
+main :: Effect Unit
 main = do
-  assert $ name sampleStyle == "pz66dqm"
-  assert $ name sampleKeyframes == "p25sc03"
-  assert $ name sampleStyleWithMedia == "p2aok7f"
-  log $ output sampleStyle
-  log $ output sampleKeyframes
-  log $ output sampleBaseStyle
-  log $ output sampleStyleWithMedia
+  assert $ sampleClass == "pz66dqm"
+  assert $ sampleKeyframes == "p25sc03"
+  assert $ sampleClassNameWithMedia == "p2aok7f"
+  log $ getStyle sheet
 
+sheet :: StyleSheet
+sheet = createStyleSheet
 
-
-sampleStyle :: Style
-sampleStyle = style
+sampleClass :: String
+sampleClass = registerStyle sheet
   """
   .& {
     width: 100px;
@@ -37,10 +33,8 @@ sampleStyle = style
   }
   """
 
-
-
-sampleKeyframes :: Style
-sampleKeyframes = style
+sampleKeyframes :: String
+sampleKeyframes = registerStyle sheet
   """
   @keyframes & {
     0% {
@@ -55,20 +49,16 @@ sampleKeyframes = style
   }
   """
 
-
-
-sampleBaseStyle :: Style
-sampleBaseStyle = style
+sampleCSS :: Unit
+sampleCSS = const unit $ registerStyle sheet
   """
   html, body {
     height: 100%;
   }
   """
 
-
-
-sampleStyleWithMedia :: Style
-sampleStyleWithMedia = style
+sampleClassNameWithMedia :: String
+sampleClassNameWithMedia = registerStyle sheet
   """
   @media (max-width: 700px) {
     .& {

@@ -5,7 +5,7 @@
   "authors": [
     "Shinya Takahashi <s.takahashi313@gmail.com>"
   ],
-  "description": "Write CSS directly with auto name generation in PureScript",
+  "description": "Write scoped CSS with auto name generation in PureScript",
   "keywords": [
     "purescript",
     "css"
@@ -24,11 +24,12 @@
     "output"
   ],
   "dependencies": {
-    "purescript-foldable-traversable": "^3.7.1",
-    "purescript-strings": "^3.5.0"
+    "purescript-refs": "^4.1.0",
+    "purescript-foldable-traversable": "^4.1.1",
+    "purescript-strings": "^4.0.1"
   },
   "devDependencies": {
-    "purescript-assert": "^3.1.0",
-    "purescript-console": "^3.0.0"
+    "purescript-assert": "^4.0.0",
+    "purescript-console": "^4.2.0"
   }
 }
