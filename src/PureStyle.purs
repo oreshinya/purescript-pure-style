@@ -11,21 +11,26 @@ import Data.Char (toCharCode)
 import Data.Foldable (foldr)
 import Data.Int (base36, toStringAs)
 import Data.Int.Bits (xor, zshr)
-import Data.String (Pattern(..), Replacement(..), replaceAll)
+import Data.String (Pattern(..), Replacement(..), replaceAll, joinWith, trim)
 import Data.String.CodeUnits (toCharArray)
+import Data.String.Regex (replace)
+import Data.String.Regex.Flags (global)
+import Data.String.Regex.Unsafe (unsafeRegex)
 import Effect.Ref (Ref, modify_, new, read)
 import Effect.Unsafe (unsafePerformEffect)
+import Foreign.Object (Object, empty, values, insert)
 
 -- | The type of stylesheet.
-newtype StyleSheet = StyleSheet (Ref String)
+newtype StyleSheet = StyleSheet (Ref (Object String))
 
 -- | Create a stylesheet.
 createStyleSheet :: StyleSheet
-createStyleSheet = StyleSheet $ unsafePerformEffect $ new ""
+createStyleSheet = StyleSheet $ unsafePerformEffect $ new empty
 
 -- | Get all styles in a stylesheet.
 getStyle :: StyleSheet -> String
-getStyle (StyleSheet ref) = unsafePerformEffect $ read ref
+getStyle (StyleSheet ref) =
+  unsafePerformEffect $ joinWith "" <<< values <$> read ref
 
 -- | Define styles with css string.
 -- |
@@ -69,11 +74,11 @@ getStyle (StyleSheet ref) = unsafePerformEffect $ read ref
 -- | ```
 registerStyle :: StyleSheet -> String -> String
 registerStyle (StyleSheet ref) style = unsafePerformEffect do
-  modify_ (flip append output) ref
+  modify_ (insert name output) ref
   pure name
   where
     name = "p" <> generateHash style
-    output = replaceToken name style
+    output = minify $ replaceToken name style
 
 generateHash :: String -> String
 generateHash str = toStringAs base36 $ zshr seed 0
@@ -84,3 +89,9 @@ generateHash str = toStringAs base36 $ zshr seed 0
 replaceToken :: String -> String -> String
 replaceToken instead target =
   replaceAll (Pattern "&") (Replacement instead) target
+
+minify :: String -> String
+minify = trim >>> replaceReturns >>> replaceWhitespaces
+  where
+    replaceReturns = replaceAll (Pattern "\n") (Replacement "")
+    replaceWhitespaces = replace (unsafeRegex "\\s\\s+" global) " "
