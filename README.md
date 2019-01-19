@@ -2,6 +2,8 @@
 
 [![Latest release](http://img.shields.io/github/release/oreshinya/purescript-pure-style.svg)](https://github.com/oreshinya/purescript-pure-style/releases)
 
+**Maybe no longer maintenance.**
+
 Write scoped CSS with auto name generation in PureScript.
 
 See [test](https://github.com/oreshinya/purescript-pure-style/blob/master/test/Main.purs).
